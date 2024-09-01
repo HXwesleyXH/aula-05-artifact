@@ -1,0 +1,20 @@
+name: CI/CD Impacta - Artifact Upload
+description: "Upload de artefato para aula de CI/CD"
+
+runs:
+  using: composite
+  steps:
+    - name: "Download and run on Linux"
+      if: runner.os == 'Linux'
+      uses: actions/upload-artifact@v4
+      with:
+        name: Linux
+        path: ./${{ env.FILE_NAME }}
+
+    - name: "Download and run on Windows"
+      if: runner.os == 'Windows'
+      uses: actions/upload-artifact@v4
+      with:
+        name: Windows
+        path: ./${{ env.FILE_NAME }}.exe
+
